@@ -8,7 +8,7 @@ export default function CornerAccent({
   const style = {
     left: -25,
     top: 30,
-    transform: "rotate(45deg)",
+    transform: "rotate(45deg)"
   };
 
   return label ? (

@@ -20,7 +20,7 @@ const ProductCard = ({
   return (
     <Card
       className={cn(
-        "flex w-[280px] h-auto m-2 group shadow-xl relative flex-col justify-center items-center animate-fade-in grid-rows-2"
+        "flex w-[280px] h-auto m-5 group shadow-xl relative flex-col justify-center items-center animate-fade-in grid-rows-2"
       )}
     >
       {(isGoggle && isFeatured) && (
@@ -38,7 +38,7 @@ const ProductCard = ({
       <div className={`grid h-full w-full row-start-2 ${styles.cardlower}`}>
       <CardContent >
         <CardTitle className="font-sohne pt-4 text-white">{item.name || item.product_id}</CardTitle>
-        <CardDescription className="font-sohne text-ldtsgray  pt-4 pb-4">{item.description}</CardDescription>
+        <CardDescription className="font-sohne  pt-4 pb-4">{item.description}</CardDescription>
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full">{children}</div>
