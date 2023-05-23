@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background:  #000000 /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  background:  #191919 /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   /* font-family: 'Sohne'; */
   /* padding: 2rem; */
   /* min-height: 93vh; */
@@ -10,6 +10,11 @@
   /* background-image: url('/ld-bg.png');
   background-repeat: no-repeat;  
   background-size: cover; */
+
+}
+
+.headerbg {
+  background: linear-gradient(200.65deg, rgba(33, 33, 33) -25.37%, rgba(0, 0, 0) 75.5%);
 
 }
 
@@ -24,7 +29,7 @@
 
 .outfitters {
   font-size: 83.4429px;
-  font-family: 'Sohne';
+  font-family: 'Sohne Mono';
 line-height: 125%;
 /* or 104px */
 
@@ -315,9 +320,12 @@ background-clip: text;
   transition: background 200ms, border 200ms;
 }
 
+.ldnewcard  {
+  background: linear-gradient(200.65deg, rgba(88, 89, 91, 0.45) -25.37%, rgba(40, 40, 40, 0.45) 75.5%);
+}
+
 .cardlower {
-  background: #252525;
-  
+  background: linear-gradient(200.65deg, rgba(88, 89, 91) -25.37%, rgba(40, 40, 40) 75.5%);
 }
 
 /* common */

@@ -68,7 +68,8 @@ module.exports = {
         ldgdcol2: '#A7B6EA',
         ldinput: '#212121',
         ldinputback: '#282828',
-        ldtsgray: '#D1D3D4'
+        ldtsgray: '#D1D3D4', 
+        ldbackground: '#191919'
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -97,6 +98,7 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         sohne: ["Sohne"],
+        sohnemono: ["Sohne Mono"],
       },
     },
   },

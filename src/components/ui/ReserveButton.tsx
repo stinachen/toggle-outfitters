@@ -28,7 +28,7 @@ const ReserveButton = ({
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="grid my-4 bottom-0 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 "
+          className="grid my-4 bottom-0 bg-blue-700 hover:bg-blue-500 text-white py-2 px-4 "
           onClick={() => {
             setHandleModal(true);
           }}
