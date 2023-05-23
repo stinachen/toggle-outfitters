@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils"
 const StoreContent = () => (
   <main className={styles.main}>
     
-    <div className={cn("flex text-3xl py-10 w-full md:text-6xl lg:text-8xl font-sans text-yellow-500 mx-auto place-items-center place-content-center animate-fade-in",
+    <div className={cn("flex text-3xl pt-10 w-full md:text-6xl lg:text-7xl font-sans text-yellow-500 mx-auto place-items-center place-content-center animate-fade-in",
             fontSans.variable
           )}>
         <div>
-        <p className={styles.subhead}>The New </p>
+        <p className={`text-lg md:text-2xl lg:text-4xl ${styles.subhead}`}>The New </p>
         <p className={styles.outfitters}>Toggle Outfitters!</p>
         {/* Future adspace area for experiment */}
         </div>

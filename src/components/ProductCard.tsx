@@ -37,8 +37,8 @@ const ProductCard = ({
       </CardHeader>
       <div className={`grid h-full w-full row-start-2 ${styles.cardlower}`}>
       <CardContent >
-        <CardTitle className="font-sohne pt-4 text-white">{item.name || item.product_id}</CardTitle>
-        <CardDescription className="font-sohne  pt-4 pb-4">{item.description}</CardDescription>
+        <CardTitle className={`${styles.cardtitle} font-sohnemono pt-4 text-white`}>{item.name || item.product_id}</CardTitle>
+        <CardDescription className={`${styles.carddescription} pt-4 pb-4`}>{item.description}</CardDescription>
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full">{children}</div>

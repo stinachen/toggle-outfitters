@@ -18,7 +18,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "underline-offset-4 hover:underline text-primary",
         link2: "underline-offset-4 hover:underline text-white text-xs", 
-        green: "bg-green-700 text-white hover:bg-green-500"
+        green: "bg-green-700 text-white hover:bg-green-500",
+        addcart: "bg-ldblue text-white hover:bg-ldblue/40 w-full"
       },
       size: {
         default: "h-10 py-2 px-4",
