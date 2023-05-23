@@ -13,7 +13,7 @@ const StoreContent = () => (
           )}>
         <div>
         <p className={styles.subhead}>The New </p>
-        <p className={styles.outfitters}>Toggle Outfitters!  </p>
+        <p className={styles.outfitters}>Toggle Outfitters!</p>
         {/* Future adspace area for experiment */}
         </div>
     </div>

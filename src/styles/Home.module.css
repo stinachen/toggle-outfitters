@@ -28,9 +28,10 @@
 }
 
 .outfitters {
-  font-size: 83.4429px;
+  /* font-size: 83.4429px; */
   font-family: 'Sohne Mono';
-line-height: 125%;
+  padding-bottom: 1rem;
+/* line-height: 125%; */
 /* or 104px */
 
 letter-spacing: 0.075em;
@@ -341,10 +342,11 @@ background-clip: text;
   position: absolute;
   display: block;
   width: 225px;
+  color: #282828;
   padding: 15px 0;
   background: linear-gradient(215.17deg, #EBFF38 -100.75%, #3DD6F5 76.92%);
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
-  color: #fff;
+  /* color: #fff; */
   font: 700 18px/1 'Lato', sans-serif;
   text-shadow: 0 1px 1px rgba(0,0,0,.2);
   text-transform: uppercase;
