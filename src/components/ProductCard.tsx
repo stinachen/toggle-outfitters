@@ -45,45 +45,6 @@ const ProductCard = ({
       </CardFooter>
       </div>
     </Card>
-
-    //     <Card className="m-2 border-2 group relative flex flex-col justify-center items-center h-72 animate-fade-in">
-    //       {(isGoggle || isFeatured) && (
-    //         <CornerAccent label={isFeatured ? featuredProductLabel : "NEW"} />
-    //       )}
-    //   <CardHeader>
-    //   <img
-    //             className="h-40 w-40"
-    //             src={"/images/"+item.image}
-    //             alt={item.name}
-    //             loading="lazy"
-    //             style={{ padding: 10 }}
-    //           />
-    //     <CardTitle>{item.name||item.product_id}</CardTitle>
-    //     <CardDescription>Card Description</CardDescription>
-    //   </CardHeader>
-    //   <CardContent>
-    //     <p>Card Content</p>
-    //   </CardContent>
-    //   <CardFooter>
-    //     <p>Card Footer</p>
-    //   </CardFooter>
-    // </Card>
-
-    // <Card className="m-2 border-2 group relative flex flex-col justify-center items-center h-72 animate-fade-in">
-
-    //     <CardHeader className="flex flex-col items-center">
-
-    //       <CardTitle></CardTitle>
-    //     </CardHeader>
-    //     <CardContent className="flex flex-col justify-center items-center">
-    //       <p className="text-center">{item.description}</p>
-    //       <div className="flex justify-center w-full">{children}</div>
-    //       <p className="text-center">
-    //         Price per unit:{" "}
-    //         <span style={{ color: "green" }}>${item.price} </span>
-    //       </p>
-    //     </CardContent>
-    // </Card>
   );
 };
 
