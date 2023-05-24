@@ -6,7 +6,7 @@ const InitialContent = () => (
   <main className={`${styles.main} flex flex-col items-center justify-center min-h-screen`}>
       <div>
     <div className="flex place-content-center">
-      <h1 className={`text-2xl lg:text-6xl text-white font-sohne`}><span className={`${styles.outfitters}`}>Toggle Outfitters</span></h1>
+      <h1 className={`text-2xl lg:text-6xl text-white font-sohnemono`}><span className={`${styles.outfitters}`}>Toggle Outfitters</span></h1>
     </div>
     <div className="flex place-content-center">
       <Image
@@ -19,7 +19,7 @@ const InitialContent = () => (
       />
     </div>
     <div className="flex place-content-center">
-      <h2 className={`font-sohne text-white text-2xl lg:text-6xl`}>Launching Soon</h2>
+      <h2 className={`font-sohnemono text-white text-2xl lg:text-6xl`}>Launching Soon</h2>
     </div>
     </div>
       <div className="flex flex-row place-content-center">

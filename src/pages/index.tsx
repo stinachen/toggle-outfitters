@@ -11,14 +11,18 @@ export default function Home() {
   const { storeEnabled } = useFlags();
 
   return (
-    <div className={cn("font-sans", fontSans.variable)}>
+    <div className={cn("font-sohne")}>
         <Head>
           <title>Toggle Outfitters</title>
         </Head>
-        <header className={styles.header}>
+        <div className="min-h-screen bg-black">
+        <header className={`fixed z-50 ${styles.header}`}>
           <NavigationMenuDemo />
         </header>
+        
         {storeEnabled ? <StoreLaunch /> : <StorePreview />}
+        </div>
+        
     </div>
   );
 }

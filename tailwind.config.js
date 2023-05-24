@@ -69,7 +69,9 @@ module.exports = {
         ldinput: '#212121',
         ldinputback: '#282828',
         ldtsgray: '#D1D3D4', 
-        ldbackground: '#191919'
+        ldbackground: '#191919',
+        ldsiteblue: '#405BFF',
+        ldsitehover: '#7084FF'
       },
       borderRadius: {
         lg: `var(--radius)`,
