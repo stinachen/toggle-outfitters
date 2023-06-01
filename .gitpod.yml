@@ -1,6 +1,6 @@
 tasks:
   - init: npm install
-    command: npm run dev && npx playwright install --with-deps
+    command: npx playwright install --with-deps && npm run dev 
 
   - init: curl -o .env https://talkin-ship-workshop.s3.us-east-2.amazonaws.com/example.env
     command: curl -o .env https://talkin-ship-workshop.s3.us-east-2.amazonaws.com/example.env
