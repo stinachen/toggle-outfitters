@@ -5,6 +5,9 @@ tasks:
   - init: curl -o .env https://talkin-ship-workshop.s3.us-east-2.amazonaws.com/example.env
     command: curl -o .env https://talkin-ship-workshop.s3.us-east-2.amazonaws.com/example.env
 
+  - init: npx playwright install
+    command: npx playwright install -deps
+
 
 
 ports:
