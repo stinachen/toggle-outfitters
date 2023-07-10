@@ -84,7 +84,7 @@ export default async function handler(
         console.error(error.message);
       }
     } else {
-      return res.json("the API is unreachable");
+      return res.status(502).json({message: "the API is unreachable"});
     }
   }
 }

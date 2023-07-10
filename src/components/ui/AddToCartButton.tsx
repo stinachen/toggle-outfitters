@@ -38,7 +38,7 @@ const AddToCartButton = ({ product, errorTesting, experimentData }: any) => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-white font-sohnemono">Error: {error}</div>;
   }
 
   return (
