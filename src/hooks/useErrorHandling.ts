@@ -15,7 +15,7 @@ const useErrorHandling = () => {
       });
       const jsonData = await response.json();
       console.log(jsonData)
-      if (jsonData == "the API is unreachable") {
+      if (jsonData.message == "the API is unreachable") {
         setErrorState(true);
         clearCart()
         return 502;
@@ -23,11 +23,11 @@ const useErrorHandling = () => {
         setErrorState(false);
       }
     } catch (e) {
-      setErrorState(true);
+      // setErrorState(true);
       console.log("is it running?");
       console.log(e)
-      clearCart()
-      return 502;
+      // clearCart()
+      // return 502;
     }
   };
 
