@@ -14,6 +14,7 @@ const useErrorHandling = () => {
         headers: { "Content-Type": "application/json" },
       });
       const jsonData = await response.json();
+      console.log(jsonData)
       if (jsonData == "the API is unreachable") {
         setErrorState(true);
         clearCart()
