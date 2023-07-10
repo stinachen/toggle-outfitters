@@ -82,15 +82,20 @@ export default function Login() {
     setCookie("ldcontext", context);
   }
 
-  function enterBeta() {
-    setIsInBeta(true);
-    const context: any = ldclient?.getContext();
-    context.user.inBeta = true;
-    ldclient?.identify(context);
-    setCookie("ldcontext", context);
-    setBetaUsers(betaUsers => [...betaUsers, userName]);
-    console.log(betaUsers);
-  }
+function enterBeta() {
+  setIsInBeta(true);
+  updateLDContext({inBeta: true});
+  setBetaUsers(betaUsers => [...betaUsers, userName]);
+  console.log(betaUsers);
+}
+
+function updateLDContext(updates) {
+  const context = ldclient?.getContext();
+  Object.assign(context.user, updates);
+  ldclient?.identify(context);
+  setCookie("ldcontext", context);
+}
+
 
   function leaveBeta() {
     setIsInBeta(false);
@@ -110,36 +115,6 @@ export default function Login() {
   if (!isLoggedIn) {
     return (
       <Button onClick={(e) => handleLogin(e)} className="text-xl bg-black hover:bg-white hover:text-black text-white" variant="outline">Login</Button>
-    //   <Dialog>
-    //   <DialogTrigger asChild>
-    //     <Button className="text-xl bg-black hover:bg-white hover:text-black text-white" variant="outline">Login</Button>
-    //   </DialogTrigger>
-    //   <DialogContent className={cn("sm:max-w-[425px] font-sans", fontSans.variable)}>
-    //     <DialogHeader>
-    //       <DialogTitle>Login to Toggle Outfitters</DialogTitle>
-    //       <DialogDescription>
-    //         Because we need to know you, to send you things.
-    //       </DialogDescription>
-    //     </DialogHeader>
-    //     <div className="grid gap-4 py-4">
-    //       <div className="grid grid-cols-4 items-center gap-4">
-    //         <Label htmlFor="name" className="text-right">
-    //           Username
-    //         </Label>
-    //         <Input id="name" className="col-span-3" required ref={inputRef} />
-    //       </div>
-    //       <div className="grid grid-cols-4 items-center gap-4">
-    //         <Label htmlFor="username" className="text-right">
-    //           Password
-    //         </Label>
-    //         <Input id="username" type='password' className="col-span-3" />
-    //       </div>
-    //     </div>
-    //     <DialogFooter>
-    //       <Button className="bg-green-500" type="submit" onClick={(e) => handleLogin(e)}>Submit</Button>
-    //     </DialogFooter>
-    //   </DialogContent>
-    // </Dialog>
 )} else {
     return (
       <AlertDialog.Root>

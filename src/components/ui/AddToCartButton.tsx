@@ -1,5 +1,4 @@
 import { useShoppingCart } from "use-shopping-cart";
-// Replace with the actual UI library used in the original code
 import { useRef, useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { RocketIcon } from "@radix-ui/react-icons";
@@ -16,22 +15,30 @@ import { ShoppingCartIcon } from 'lucide-react';
 const AddToCartButton = ({ product, errorTesting, experimentData }: any) => {
   const { addItem } = useShoppingCart();
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(null);
   const timerRef = useRef(0);
   
   async function clickRunner() {
-    const val = await errorTesting();
-    if (val == 502) {
-        throw { message: "API IS DOWN"}    
-    } else {
-    // TODO: await doesn't do anything here, we should remove it
-    await addItem(product);
-    await experimentData();
-    setOpen(false);
-    window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => {
-        setOpen(true);
-    }, 10);
-}
+    try {
+      const val = await errorTesting();
+      if (val == 502) {
+          throw { message: "API IS DOWN"}    
+      } else {
+        await addItem(product);
+        await experimentData();
+        setOpen(false);
+        window.clearTimeout(timerRef.current);
+        timerRef.current = window.setTimeout(() => {
+            setOpen(true);
+        }, 10);
+      }
+    } catch (err: any) {
+      setError(err.message);
+    }
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
