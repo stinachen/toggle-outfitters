@@ -21,7 +21,7 @@ type Product = {
   isFeatured: boolean;
 };
 
-const Inventory = () => {
+const Inventory = () => {;
   // import flags
   const { devdebug, billing, enableStripe, newProductExperienceAccess, featuredProductLabel } = useFlags();
 
@@ -95,11 +95,11 @@ const Inventory = () => {
 
   return (
     <div>
-      {devdebug && (
+      {/* {devdebug && (
         <div className={styles.apistatus} style={{ justifyContent: "center" }}>
           <APIMigrationState />
         </div>
-      )}
+      )} */}
       <div style={{
         visibility: 'hidden'
       }}>
@@ -109,9 +109,12 @@ const Inventory = () => {
             : "none"}
         </span>
       </div>
-      <div className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4">
+      <div 
+      
+      className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 z-40">
         {stripeProducts.map((product: Product, index: number) => (
           <ProductCard
+          className="z-40"
             key={index}
             item={product}
             featuredProductLabel={featuredProductLabel}
@@ -120,6 +123,7 @@ const Inventory = () => {
           >
             {billing  ? (
               <AddToCartButton
+              className="z-50"
                 product={product}
                 errorTesting={errorTesting}
                 experimentData={experimentData}

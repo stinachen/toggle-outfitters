@@ -1,10 +1,10 @@
 // @ts-nocheck
-import * as React from 'react';
+import * as React from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as Separator from "@radix-ui/react-separator";
 import { styled, keyframes } from "@stitches/react";
-import {User, CheckCircle2} from 'lucide-react'
+import { User, CheckCircle2 } from "lucide-react";
 import {
   mauve,
   blackA,
@@ -18,10 +18,10 @@ import {
 } from "@radix-ui/colors";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import { useState, useContext, useRef } from "react";
-import { useLDClient } from "launchdarkly-react-client-sdk";
+import { useLDClient, useFlags } from "launchdarkly-react-client-sdk";
 import { setCookie, getCookie } from "cookies-next";
 import { Login_data } from "@/context/state";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -30,40 +30,38 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { fontSans } from "@/lib/fonts";
+} from "@/components/ui/dialog";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { cn } from "@/lib/utils";
+import AdminPanel from "./adminPanel";
 
 export default function Login() {
+  const { adminMode } = useFlags();
   const inputRef = useRef();
   const { isLoggedIn, setIsLoggedIn } = useContext(Login_data);
   const [handleModal, setHandleModal] = useState(false);
   const ldclient = useLDClient();
   const [isInBeta, setIsInBeta] = useState(false);
-  const [userName, setUserName] = useState("")
-  const [betaUsers, setBetaUsers] = useState([])
+  const [userName, setUserName] = useState("");
+  const [betaUsers, setBetaUsers] = useState([]);
 
   function handleLogin(e: Event) {
     // Setting the user's name in the context object
-    let user = 'Toggle';
+    let user = "Toggle";
     e.preventDefault();
     setIsLoggedIn(true);
     const context: any = ldclient?.getContext();
     console.log(context);
-    const optedIn = betaUsers.find(element => element === user);
+    const optedIn = betaUsers.find((element) => element === user);
     console.log(optedIn);
     if (optedIn === user) {
-      context.user.inBeta = true
-      setIsInBeta(true)
+      context.user.inBeta = true;
+      setIsInBeta(true);
+    } else {
+      context.user.inBeta = false;
+      setIsInBeta(false);
     }
-    else {
-      context.user.inBeta = false
-      setIsInBeta(false)
-    }
-    context.user.name = user
+    context.user.name = user;
     ldclient?.identify(context);
     setCookie("ldcontext", context);
     console.log(context);
@@ -82,20 +80,19 @@ export default function Login() {
     setCookie("ldcontext", context);
   }
 
-function enterBeta() {
-  setIsInBeta(true);
-  updateLDContext({inBeta: true});
-  setBetaUsers(betaUsers => [...betaUsers, userName]);
-  console.log(betaUsers);
-}
+  function enterBeta() {
+    setIsInBeta(true);
+    updateLDContext({ inBeta: true });
+    setBetaUsers((betaUsers) => [...betaUsers, userName]);
+    console.log(betaUsers);
+  }
 
-function updateLDContext(updates) {
-  const context = ldclient?.getContext();
-  Object.assign(context.user, updates);
-  ldclient?.identify(context);
-  setCookie("ldcontext", context);
-}
-
+  function updateLDContext(updates) {
+    const context = ldclient?.getContext();
+    Object.assign(context.user, updates);
+    ldclient?.identify(context);
+    setCookie("ldcontext", context);
+  }
 
   function leaveBeta() {
     setIsInBeta(false);
@@ -103,8 +100,12 @@ function updateLDContext(updates) {
     context.user.inBeta = false;
     ldclient?.identify(context);
     setCookie("ldcontext", context);
-    setBetaUsers(betaUsers => {return betaUsers.filter(betaUsers => {betaUsers !== userName})})
-    console.log(betaUsers)
+    setBetaUsers((betaUsers) => {
+      return betaUsers.filter((betaUsers) => {
+        betaUsers !== userName;
+      });
+    });
+    console.log(betaUsers);
   }
 
   if (getCookie("ldcontext") === undefined) {
@@ -114,21 +115,36 @@ function updateLDContext(updates) {
 
   if (!isLoggedIn) {
     return (
-      <Button onClick={(e) => handleLogin(e)} className="text-xl bg-black hover:bg-white hover:text-black text-white" variant="outline">Login</Button>
-)} else {
+      <Button
+        onClick={(e) => handleLogin(e)}
+        className="text-xl bg-black hover:bg-white hover:text-black text-white"
+        variant="outline"
+      >
+        Login
+      </Button>
+    );
+  } else {
     return (
       <AlertDialog.Root>
         <AlertDialogTrigger>
           <NavigationMenuTrigger>
-            <Button variant='outline' className="hover:bg-white ">
+            <Button variant="outline" className="hover:bg-white ">
               <User className="mr-2" color="white" size={24} />
-              <div className='text-md xl:text-lg text-white hover:text-black'>
-              {userName}{" "}
+              <div className="text-md xl:text-lg text-white hover:text-black">
+                {userName}{" "}
               </div>
               <CaretDown color="white" className="ml-2" aria-hidden />
             </Button>
             <NavigationMenuContent>
               <List>
+                {adminMode ? (
+                  <div>
+                    <p className="font-sohnemono text-ldred">
+                      Store Admin Active
+                    </p>
+                    <AdminPanel />
+                  </div>
+                ) : null}
                 <ListItem>
                   <AvatarRoot>
                     <AvatarImage src="/images/thumbs-up.png"></AvatarImage>
@@ -140,10 +156,14 @@ function updateLDContext(updates) {
                   <ListItemText>Member since 2023</ListItemText>
                 </ListItem>
                 <div style={{ paddingBottom: "20px", paddingTop: "10px" }}>
-                  <Button className="bg-red-400" onClick={handleLogout}>
+                  <Button
+                    className="text-md md:text-xl bg-red-500 w-1/2"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </Button>
                 </div>
+
                 <SeparatorRoot css={{ margin: "15px 0" }} />
                 {isInBeta ? (
                   <ListItemLink variant="success">
@@ -157,7 +177,9 @@ function updateLDContext(updates) {
                       You Are Enrolled!
                     </ListItemText>
                     <div>
-                      <Button variant="link2" size="sm" onClick={leaveBeta}>Opt Out</Button>
+                      <Button variant="link2" size="sm" onClick={leaveBeta}>
+                        Opt Out
+                      </Button>
                     </div>
                   </ListItemLink>
                 ) : (
@@ -250,8 +272,8 @@ const List = styled("ul", {
   display: "grid",
   paddingBottom: 5,
   margin: 5,
-  alignItems: 'center',
-  textAlign: 'center',
+  alignItems: "center",
+  textAlign: "center",
   zIndex: 999,
   columnGap: 10,
   listStyle: "none",

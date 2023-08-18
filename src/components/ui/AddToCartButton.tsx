@@ -51,7 +51,7 @@ const AddToCartButton = ({ product, errorTesting, experimentData }: any) => {
         }}><ShoppingCartIcon className="mr-2" color="white" size={24} />
         Add to Cart
         </Button>
-      <ToastRoot open={open} onOpenChange={setOpen}>
+      <ToastRoot open={open} onOpenChange={setOpen} className="z-50">
         <ToastTitle>Added to Cart!</ToastTitle>
         <RocketIcon
           color={slate.slate1}

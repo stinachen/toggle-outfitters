@@ -120,10 +120,10 @@ background-clip: text;
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  /* display: grid; */
+  /* justify-content: center;
+  align-items: center; */
+  /* position: relative; */
   /* background: white; */
   /* width: '100vw'; */
   /* padding: 1rem 0; */

@@ -19,7 +19,8 @@ const buttonVariants = cva(
         link: "underline-offset-4 hover:underline text-primary",
         link2: "underline-offset-4 hover:underline text-white text-xs", 
         green: "bg-green-700 text-white hover:bg-green-500",
-        addcart: "bg-ldsiteblue font-sohne text-white hover:bg-ldsitehover w-full"
+        addcart: "bg-ldsiteblue text-white hover:bg-ldsitehover w-full",
+        enterstore: "border border-input hover:bg-accent hover:text-accent-foreground text-white w-full"
       },
       size: {
         default: "h-10 py-2 px-4",

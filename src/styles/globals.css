@@ -70,6 +70,20 @@
     --radius: 0.5rem;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #282828;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(126.73deg, #EAFF38 -2.64%, #38C7E4 72.44%);
+  
+  /* additional styling properties for the scrollbar thumb */
+}
  
 @layer base {
   * {

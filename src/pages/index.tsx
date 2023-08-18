@@ -15,8 +15,8 @@ export default function Home() {
         <Head>
           <title>Toggle Outfitters</title>
         </Head>
-        <div className="min-h-screen bg-black">
-        <header className={`fixed z-50 ${styles.header}`}>
+        <div className="min-h-screen relative">
+        <header className={`absolute z-50 ${styles.header}`}>
           <NavigationMenuDemo />
         </header>
         
