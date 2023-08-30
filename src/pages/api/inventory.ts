@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { createClient } from '@supabase/supabase-js';
 import product from '@/config/products';
 import { getCookie } from 'cookies-next';
+import { PrismaClient } from '@prisma/client'
+
 
 /************************************************************************************************
 
@@ -16,6 +18,13 @@ import { getCookie } from 'cookies-next';
 
 *************************************************************************************************
 */
+const prisma = new PrismaClient()
+
+// @ts-ignore
+if (typeof BigInt.prototype.toJSON === 'undefined') {
+// @ts-ignore
+  BigInt.prototype.toJSON = function() { return this.toString(); };
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -108,6 +117,7 @@ export default async function handler(
   const ldClient = await getServerClient(process.env.LD_SDK_KEY || "");
   const clientContext: any = getCookie('ldcontext', { req, res })
 
+
   let dbTesting;
   let jsonObject
 
@@ -124,11 +134,7 @@ export default async function handler(
   dbTesting = await ldClient.variation("dbTesting", jsonObject, false);
 
   if (dbTesting == 'postgres') {
-    const supabase = createClient(process.env.NEXT_PUBLIC_DB_URL || "", process.env.NEXT_PUBLIC_DB_ANON_KEY || "")
-
-    const { data, error } = await supabase
-      .from('toggletable')
-      .select()
+    const data = await prisma.toggletable.findMany()
 
     res.status(200).json(data)
   } else {
