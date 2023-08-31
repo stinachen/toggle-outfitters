@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npx playwright install"
+    "postinstall": "prisma generate; npx playwright install"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
