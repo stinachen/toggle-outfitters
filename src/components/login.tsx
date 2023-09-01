@@ -31,9 +31,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { cn } from "@/lib/utils";
 import AdminPanel from "./adminPanel";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 export default function Login() {
   const { adminMode } = useFlags();
@@ -45,32 +48,53 @@ export default function Login() {
   const [userName, setUserName] = useState("");
   const [betaUsers, setBetaUsers] = useState([]);
 
-  function handleLogin(e: Event) {
-    // Setting the user's name in the context object
-    let user = "Toggle";
-    e.preventDefault();
-    setIsLoggedIn(true);
-    const context: any = ldclient?.getContext();
-    console.log(context);
-    const optedIn = betaUsers.find((element) => element === user);
-    console.log(optedIn);
-    if (optedIn === user) {
-      context.user.inBeta = true;
-      setIsInBeta(true);
-    } else {
-      context.user.inBeta = false;
-      setIsInBeta(false);
-    }
-    context.user.name = user;
-    ldclient?.identify(context);
-    setCookie("ldcontext", context);
-    console.log(context);
-    setHandleModal(false);
-    setUserName(user);
+// Function for disabled login 
+  // function handleLogin(e: Event) {
+  //   // Setting the user's name in the context object
+  //   let user = "Toggle";
+  //   e.preventDefault();
+  //   setIsLoggedIn(true);
+  //   const context: any = ldclient?.getContext();
+  //   console.log(context);
+  //   const optedIn = betaUsers.find((element) => element === user);
+  //   console.log(optedIn);
+  //   if (optedIn === user) {
+  //     context.user.inBeta = true;
+  //     setIsInBeta(true);
+  //   } else {
+  //     context.user.inBeta = false;
+  //     setIsInBeta(false);
+  //   }
+  //   context.user.name = user;
+  //   ldclient?.identify(context);
+  //   setCookie("ldcontext", context);
+  //   console.log(context);
+  //   setHandleModal(false);
+  //   setUserName(user);
+  // }
+
+// Function for login functionaltiy 
+function handleLogin(e: Event) {
+  e.preventDefault();
+  setIsLoggedIn(true);
+  const context: any = ldclient?.getContext();
+  const optedIn = betaUsers.find((element) => element === inputRef.current.value);
+  if (optedIn === inputRef.current.value) {
+    context.user.inBeta = true;
+    setIsInBeta(true);
+  } else {
+    context.user.inBeta = false;
+    setIsInBeta(false);
   }
+  context.user.name = inputRef.current.value;
+  ldclient?.identify(context);
+  setCookie("ldcontext", context);
+  setHandleModal(false);
+  setUserName(inputRef.current.value);
+}
+
 
   function handleLogout() {
-    console.log("logout-happened");
     setIsLoggedIn(false);
     setIsInBeta(false);
     const context: any = ldclient?.getContext();
@@ -115,13 +139,43 @@ export default function Login() {
 
   if (!isLoggedIn) {
     return (
-      <Button
-        onClick={(e) => handleLogin(e)}
-        className="text-xl bg-black hover:bg-white hover:text-black text-white"
-        variant="outline"
-      >
-        Login
-      </Button>
+      // <Button
+      //   onClick={(e) => handleLogin(e)}
+      //   className="text-xl bg-black hover:bg-white hover:text-black text-white"
+      //   variant="outline"
+      // >
+      //   Login
+      // </Button>
+        <Dialog>
+      <DialogTrigger asChild>
+        <Button className="text-xl bg-black hover:bg-white hover:text-black text-white" variant="outline">Login</Button>
+      </DialogTrigger>
+      <DialogContent className={cn("sm:max-w-[425px] font-sohne")}>
+        <DialogHeader>
+          <DialogTitle>Login to Toggle Outfitters</DialogTitle>
+          <DialogDescription>
+            Because we need to know you, to send you things.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Username
+            </Label>
+            <Input id="name" className="col-span-3" required ref={inputRef} />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Password
+            </Label>
+            <Input id="username" type='password' className="col-span-3" />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant={"outline"} type="submit" onClick={(e) => handleLogin(e)}>Submit</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
     );
   } else {
     return (

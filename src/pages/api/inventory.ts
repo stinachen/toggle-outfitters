@@ -117,7 +117,6 @@ export default async function handler(
   const ldClient = await getServerClient(process.env.LD_SDK_KEY || "");
   const clientContext: any = getCookie('ldcontext', { req, res })
 
-
   let dbTesting;
   let jsonObject
 
@@ -135,7 +134,6 @@ export default async function handler(
 
   if (dbTesting == 'postgres') {
     const data = await prisma.toggletable.findMany()
-
     res.status(200).json(data)
   } else {
     res.status(200).json(product)
