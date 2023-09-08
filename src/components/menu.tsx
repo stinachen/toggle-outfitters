@@ -4,18 +4,12 @@ import Link from "next/link";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { styled, keyframes } from "@stitches/react";
 import { CaretDownIcon } from "@radix-ui/react-icons";
-import {
-  mauve,
-  blueDark,
-  grayDark,
-
-} from "@radix-ui/colors";
+import { mauve, blueDark, grayDark } from "@radix-ui/colors";
 import CartSummary from "./ui/cart-summary";
 import { useShoppingCart } from "use-shopping-cart";
 import { useFlags, useLDClient } from "launchdarkly-react-client-sdk";
 import Login from "./login";
 import Image from "next/image";
-import AdminPanel from "./adminPanel";
 import { Button } from "./ui/button";
 import { ShoppingCartIcon } from "lucide-react";
 import ts from "/public/images/talkin-ship.png";
@@ -56,7 +50,10 @@ const NavigationMenuDemo = () => {
         {devdebug ? (
           <NavigationMenu.Item>
             <NavigationMenuTrigger>
-              <Button variant={"outline"} className="text-sm xl:text-lg text-white">
+              <Button
+                variant={"outline"}
+                className="text-sm xl:text-lg text-white"
+              >
                 Debug: App Data
                 <CaretDownDebug aria-hidden />
               </Button>
@@ -83,7 +80,10 @@ const NavigationMenuDemo = () => {
         {devdebug ? (
           <NavigationMenu.Item>
             <NavigationMenuTrigger>
-              <Button variant={"outline"} className="text-sm xl:text-lg text-white">
+              <Button
+                variant={"outline"}
+                className="text-sm xl:text-lg text-white"
+              >
                 Debug: Country Override
                 <CaretDownDebug aria-hidden />
               </Button>

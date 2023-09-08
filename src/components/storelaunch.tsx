@@ -1,20 +1,22 @@
-import Image from "next/image";
 import Inventory from "@/components/inventory";
 import styles from "@/styles/Home.module.css";
 import { Button } from "./ui/button";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import {
-  motion,
-  useAnimation,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { once } from "events";
+import Image from "next/image";
+import { useFlags } from "launchdarkly-react-client-sdk";
+
+const VARIATION_TO_IMAGE = {
+  default: "/Toggle-5.png",
+  halloween: "/halloween.png",
+  "thumbs-up": "/thumbs-up.png",
+};
 
 const StoreContent = () => {
+  const { headerImage } = useFlags();
+
   const handleScroll = (e: any) => {
     console.log("going");
     e.preventDefault();
@@ -81,7 +83,13 @@ const StoreContent = () => {
             </div>
           </div>
           <div className="justify-end hidden md:block">
-            <img src="/Toggle-5.png" className="" />
+            <Image
+              alt="Toggle"
+              src={VARIATION_TO_IMAGE[String(headerImage)]}
+              className=""
+              height={550}
+              width={400}
+            />
           </div>
         </motion.div>
       </div>
