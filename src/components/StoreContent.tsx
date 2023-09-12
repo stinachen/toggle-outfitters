@@ -8,12 +8,6 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useFlags } from "launchdarkly-react-client-sdk";
 
-const VARIATION_TO_IMAGE = {
-  default: "/Toggle-5.png",
-  halloween: "/halloween.png",
-  "thumbs-up": "/thumbs-up.png",
-};
-
 const StoreContent = () => {
   const { headerImage } = useFlags();
 
@@ -31,12 +25,25 @@ const StoreContent = () => {
 
   const maincontrols = useAnimation();
 
+  function getImageSrc(headerImage: string) {
+    switch (headerImage) {
+      case "halloween":
+        return "/halloween.png";
+      case "thumbs-up":
+        return "/thumbs-up.png";
+      case "osmo":
+        return "/osmo.png";
+      case "default":
+      default:
+        return "/Toggle-5.png";
+    }
+  }
+
   useEffect(() => {
-    console.log(isInView);
     if (isInView) {
       maincontrols.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, maincontrols]);
 
   return (
     <main className={`${styles.main} bg-ldgray relative`}>
@@ -85,8 +92,7 @@ const StoreContent = () => {
           <div className="justify-end hidden md:block">
             <Image
               alt="Toggle"
-              src={VARIATION_TO_IMAGE[String(headerImage)]}
-              className=""
+              src={getImageSrc(headerImage)}
               height={550}
               width={400}
             />
