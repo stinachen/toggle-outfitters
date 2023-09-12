@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "./button";
 import {
   Dialog,
   DialogContent,
@@ -7,12 +7,11 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-import { fontSans } from "@/lib/fonts";
-
+} from "./dialog";
+import { Input } from "./input";
+import { Label } from "./label";
+import { cn } from "../../lib/utils";
+import { fontSans } from "../../lib/fonts";
 
 const ReserveButton = ({
   setHandleModal,
@@ -27,7 +26,8 @@ const ReserveButton = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"}
+        <Button
+          variant={"outline"}
           className="grid my-4 bottom-0 text-white py-2 px-4 "
           onClick={() => {
             setHandleModal(true);
@@ -37,35 +37,52 @@ const ReserveButton = ({
         </Button>
       </DialogTrigger>
       {handleModal && (
-      <DialogContent className={cn("sm:max-w-[425px] font-sans", fontSans.variable)}>
-        <DialogHeader>
-          <DialogTitle>Thanks for your interest in our Toggles!</DialogTitle>
-          <DialogDescription>
-            Please provide your contact info and our Toggle Specialists will
-            contact you in 3-5 business days
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value={name} className="col-span-3" onChange={(event) => updateField("name", event)} />
+        <DialogContent
+          className={cn("sm:max-w-[425px] font-sans", fontSans.variable)}
+        >
+          <DialogHeader>
+            <DialogTitle>Thanks for your interest in our Toggles!</DialogTitle>
+            <DialogDescription>
+              Please provide your contact info and our Toggle Specialists will
+              contact you in 3-5 business days
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input
+                id="name"
+                value={name}
+                className="col-span-3"
+                onChange={(event) => updateField("name", event)}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                value={email}
+                className="col-span-3"
+                onChange={(event) => updateField("email", event)}
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
-              Email Address
-            </Label>
-            <Input id="email" value={email} className="col-span-3" onChange={(event) => updateField("email", event)} />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" onClick={(e) => {
-            handleClickTest(e)
-            onButtonClick()
-          }}>Submit</Button>
-        </DialogFooter>
-      </DialogContent>
+          <DialogFooter>
+            <Button
+              type="submit"
+              onClick={(e) => {
+                handleClickTest(e);
+                onButtonClick();
+              }}
+            >
+              Submit
+            </Button>
+          </DialogFooter>
+        </DialogContent>
       )}
     </Dialog>
   );

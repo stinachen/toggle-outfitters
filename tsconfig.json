@@ -18,6 +18,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/bak.bak", "types/**/*"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/bak.bak",
+    "types/**/*",
+    "jest.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }

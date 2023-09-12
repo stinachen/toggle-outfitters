@@ -1,8 +1,8 @@
-import Inventory from "@/components/inventory";
-import styles from "@/styles/Home.module.css";
+import Inventory from "./inventory";
+import styles from "../styles/Home.module.css";
 import { Button } from "./ui/button";
-import { fontSans } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
+import { fontSans } from "../lib/fonts";
+import { cn } from "../lib/utils";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Image from "next/image";

@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import styles from "@/styles/Home.module.css";
 import ErrorDialog from "./ErrorDialog";
 import AddToCartButton from "./ui/AddToCartButton";
 import { useFlags, useLDClient } from "launchdarkly-react-client-sdk";
-import APIMigrationState from "./api-status";
 import ReserveButton from "./ui/ReserveButton";
 import useFetch from "@/hooks/useFetch";
 import useErrorHandling from "@/hooks/useErrorHandling";
@@ -21,9 +19,15 @@ type Product = {
   isFeatured: boolean;
 };
 
-const Inventory = () => {;
+const Inventory = () => {
   // import flags
-  const { devdebug, billing, enableStripe, newProductExperienceAccess, featuredProductLabel } = useFlags();
+  const {
+    devdebug,
+    billing,
+    enableStripe,
+    newProductExperienceAccess,
+    featuredProductLabel,
+  } = useFlags();
 
   //function for adding form fill data to database
   const [name, setName] = useState("");
@@ -45,7 +49,7 @@ const Inventory = () => {;
       return response.status;
     } catch (error) {
       console.log("there was a problem");
-      return 502
+      return 502;
     }
   };
 
@@ -70,7 +74,7 @@ const Inventory = () => {;
     data: stripeProducts,
     error: stripeProductsError,
     isLoading: stripeProductsLoading,
-  } = useFetch("/api/products", enableStripe, newProductExperienceAccess );
+  } = useFetch("/api/products", enableStripe, newProductExperienceAccess);
 
   useEffect(() => {
     setErrorState(false);
@@ -80,7 +84,7 @@ const Inventory = () => {;
   const handleClickTest = (e: any) => {
     e.preventDefault();
     setHandleModal(!handleModal);
-    return handleModal
+    return handleModal;
   };
 
   const timerRef = useRef(0);
@@ -91,7 +95,8 @@ const Inventory = () => {;
         <div className="animate-spin w-16 h-16 border-t-4 border-orange-500 border-solid rounded-full"></div>
       </div>
     );
-  }  if (stripeProductsError) return <p>Error: {stripeProductsError.message}</p>; 
+  }
+  if (stripeProductsError) return <p>Error: {stripeProductsError.message}</p>;
 
   return (
     <div>
@@ -100,30 +105,28 @@ const Inventory = () => {;
           <APIMigrationState />
         </div>
       )} */}
-      <div style={{
-        visibility: 'hidden'
-      }}>
+      <div
+        style={{
+          visibility: "hidden",
+        }}
+      >
         <span data-id="label-container">
-          {featuredProductLabel
-            ? featuredProductLabel
-            : "none"}
+          {featuredProductLabel ? featuredProductLabel : "none"}
         </span>
       </div>
-      <div 
-      
-      className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 z-40">
+      <div className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 z-40">
         {stripeProducts.map((product: Product, index: number) => (
           <ProductCard
-          className="z-40"
+            className="z-40"
             key={index}
             item={product}
             featuredProductLabel={featuredProductLabel}
             isGoggle={product.category === "goggle"}
             isFeatured={index < 4}
           >
-            {billing  ? (
+            {billing ? (
               <AddToCartButton
-              className="z-50"
+                className="z-50"
                 product={product}
                 errorTesting={errorTesting}
                 experimentData={experimentData}
@@ -136,14 +139,14 @@ const Inventory = () => {;
                 updateField={updateField}
                 formData={{ name, email }}
                 onButtonClick={onButtonClick}
-                
               />
             )}
-            {billing && 
-            <ErrorDialog
-              errorState={errorState}
-              setErrorState={setErrorState}
-            /> }
+            {billing && (
+              <ErrorDialog
+                errorState={errorState}
+                setErrorState={setErrorState}
+              />
+            )}
           </ProductCard>
         ))}
       </div>
