@@ -91,7 +91,7 @@ const StoreContent = () => {
           </div>
           <div className="justify-end hidden md:block">
             <Image
-              alt="Toggle"
+              alt={`${headerImage} header image`}
               src={getImageSrc(headerImage)}
               height={550}
               width={400}
