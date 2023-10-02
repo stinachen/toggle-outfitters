@@ -12,11 +12,9 @@ const StoreContent = () => {
   const { headerImage } = useFlags();
 
   const handleScroll = (e: any) => {
-    console.log("going");
     e.preventDefault();
     const href = "store";
     const elem = document.getElementById(href);
-    console.log(elem);
     elem?.scrollIntoView({ behavior: "smooth" });
   };
 
