@@ -25,10 +25,8 @@ const StoreContent = () => {
 
   const maincontrols = useAnimation();
 
-  function getImageSrc(headerImage: string) {
+  function getImageSrc() {
     switch (headerImage) {
-      case "halloween":
-        return "/halloween.png";
       case "thumbs-up":
         return "/thumbs-up.png";
       case "osmo":
@@ -92,7 +90,7 @@ const StoreContent = () => {
           <div className="justify-end hidden md:block">
             <Image
               alt={`${headerImage} header image`}
-              src={getImageSrc(headerImage)}
+              src={getImageSrc()}
               height={550}
               width={400}
             />
