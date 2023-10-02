@@ -2,10 +2,8 @@
 jest.mock("../inventory", () => () => <div>Inventory</div>);
 
 import "@testing-library/jest-dom";
-import { mocked } from "jest-mock";
 import { render, screen } from "@testing-library/react";
 import StoreContent from "../StoreContent";
-import { useFlags } from "launchdarkly-react-client-sdk";
 
 describe("StoreContent", () => {
   beforeEach(() => {
@@ -16,7 +14,7 @@ describe("StoreContent", () => {
       disconnect: () => null,
     });
     window.IntersectionObserver = mockIntersectionObserver;
-
+  });
 
   afterEach(() => {
     jest.resetAllMocks();
